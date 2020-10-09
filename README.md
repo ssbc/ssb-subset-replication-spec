@@ -32,6 +32,8 @@ all proofs are current or not from the author.
 This api replaces getFeed, getFeedReverse, getMessagesOfType of
 [partial replication v1]. This leaves getTangle.
 
+This should be used in conjunction with [ssb-secure-partial-feed].
+
 Open questions:
  - EBT like sync based on queries, so like observable but more general
  - How do you define a succint way to get new messages based on your
@@ -43,3 +45,4 @@ Open questions:
 [ssb-observable]: https://github.com/arj03/ssb-observables
 [partial replication v1]: https://github.com/arj03/ssb-partial-replication
 [set-reconciliation]: https://github.com/AljoschaMeyer/set-reconciliation
+[ssb-secure-partial-feed]: https://github.com/arj03/ssb-secure-partial-feed
