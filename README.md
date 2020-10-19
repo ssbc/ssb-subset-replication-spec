@@ -58,10 +58,12 @@ messages. `getTangle` is a special case of [set-reconciliation] where
 you don't have any messages in the set. Because of this, the protocol
 can be a lot simplier by just specifying the root you are interested
 in. New messages in the tangle will be get replicated using the
-frontier synchonization the same way as say new contact
-messages. Furthermore it would be possible to use the same method even
-if you had some of the messages of a tangle by doing a local
-comparison.
+frontier synchonization the same way as say new contact messages.
+
+If only messages within a certain number of hops is needed, the
+results can be filtered locally. The same way that it is possible to
+use the same method even if you had some of the messages of a tangle
+by doing a local comparison and filtering based on existing messages.
 
 [JITDB]: https://github.com/arj03/jitdb
 [ssb-observable]: https://github.com/arj03/ssb-observables
