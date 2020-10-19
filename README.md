@@ -55,10 +55,13 @@ Source is a stream of messages that refers to the rootId. `getTangle`
 was introduced as a way to get older messages in an easy way. Say
 someone mentions an old thread that is not part of your frontier of
 messages. `getTangle` is a special case of [set-reconciliation] where
-you don't have any messages in the set. Because of this the protocol
+you don't have any messages in the set. Because of this, the protocol
 can be a lot simplier by just specifying the root you are interested
 in. New messages in the tangle will be get replicated using the
-frontier synchonization the same way as say new contact messages.
+frontier synchonization the same way as say new contact
+messages. Furthermore it would be possible to use the same method even
+if you had some of the messages of a tangle by doing a local
+comparison.
 
 [JITDB]: https://github.com/arj03/jitdb
 [ssb-observable]: https://github.com/arj03/ssb-observables
