@@ -17,7 +17,7 @@ This module consists of two methods:
 The query parameter is interface similar to [JITDB] except the data
 array should be unbounded. To support pagination, `offset`, `limit`
 and `reverse` can be supplied. To get the latest 10 post messages of a
-particular user the following query can be used:
+particular feed the following query can be used:
 
 ```
 options: { limit 10, reverse: true},
@@ -47,7 +47,7 @@ proofs. This allows other feeds than the author to assign proofs to a
 result set.
 
 This api replaces `getFeed`, `getFeedReverse`, `getMessagesOfType` of
-[partial replication v1]. This leaves `getTangle`.
+[partial replication v1].
 
 ## getTangle(rootId): source
 
