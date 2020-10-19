@@ -5,7 +5,7 @@ Status: Design phase
 This module comes from the desire to synchronize a subset of a SSB
 log. The main motivation is to enable faster initial sync by only
 replicating a certain subset of messages that can then be supplimented
-with a frontier sync such as EBT.
+with a frontier sync such as [EBT].
 
 It is recommended to use this module in conjunction with
 [ssb-secure-partial-feed].
