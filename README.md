@@ -24,16 +24,17 @@ subset of data of say contact messages to only request changes for
 those so the sync time would be less than a full sync.
 
 It is recommended to use this module in conjunction with
-[ssb-secure-partial-feed].
+[ssb-secure-partial-feed] to automatically write statements about
+where messages are in a feed.
 
 This module consists of two methods:
 
 ## getSubset(query): source
 
-The query parameter is interface similar to [JITDB] except the data
-array should be unbounded. To support pagination, `offset`, `limit`
-and `reverse` can be supplied. To get the latest 10 post messages of a
-particular feed the following query can be used:
+The query parameters interface is similar to [JITDB]. To support
+pagination, `offset`, `limit` and `reverse` can be supplied. To get
+the latest 10 post messages of a particular feed the following query
+can be used:
 
 ```
 options: { limit 10, reverse: true},
@@ -50,17 +51,17 @@ Which will result in the following:
 
 ```
 {
-   proofs: [proof1, ...],
+   statements: [statement1, ...],
    data: [msg1, ...]
 }
 ```
 
-Where a proof is defined as the latest version of a [ssb-observable]
-that describes the thing you are querying. This can be useful for
-contact messages for an author where messages needs to be in order and
-nothing left out by a third party. Note you can have multiple
-proofs. This allows other feeds than the author to assign proofs to a
-result set.
+Where a statements is defined as the latest version of a
+[ssb-observable] that describes the thing you are querying. This can
+be useful for contact messages for an author where messages needs to
+be in order and nothing left out by a third party. Note you can have
+multiple statements. This allows other feeds than the author to add
+statements to a result set.
 
 This api replaces `getFeed`, `getFeedReverse`, `getMessagesOfType` of
 [partial replication v1].
