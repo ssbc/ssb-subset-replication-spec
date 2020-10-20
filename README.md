@@ -7,13 +7,14 @@ log. The main motivation is to enable faster initial sync by only
 replicating a certain subset of messages that can then be supplimented
 with a frontier sync such as [EBT].
 
-In classical SSB, feeds up to a hops count (2 or 3) is replicated in
-full. The good thing about this is that any node has a full replica of
-the feeds it is interested in, so the only way of having network
-partitions (where a subset of the network is unavailable) is by having
-that part of the network (as defined by hops) go offline faster than
-new nodes come in. Nodes might go offline for an extended period of
-time or never come back. This is somewhat mitigated by pubs.
+In classical SSB, feeds up to a hops count (normally 2 or 3) is
+replicated in full. The good thing about this is that any node has a
+full replica of the feeds it is interested in, so the only way of
+having network partitions (where a subset of the network and thus
+potentially feeds is unavailable) is by having that part of the
+network (as defined by hops) go offline faster than new nodes come
+in. Nodes might go offline for an extended period of time or never
+come back. This is somewhat mitigated by pubs.
 
 Partial replication has a similar problem but on a different axis
 where a node might be offline for a while and once it comes back all
@@ -56,21 +57,25 @@ Which will result in the following:
 }
 ```
 
-Where a statements is defined as the latest version of a
+Where a statement is defined as the latest version of a
 [ssb-observable] that describes the thing you are querying. This can
 be useful for contact messages for an author where messages needs to
-be in order and nothing left out by a third party. Note you can have
-multiple statements. This allows other feeds than the author to add
-statements to a result set.
+be in order and nothing left out by a third party. It might even be
+essential for building certain applications on top of this
+system. Note you can have multiple statements. This allows feeds other
+than the author to add statements to a result set.
 
 This api replaces `getFeed`, `getFeedReverse`, `getMessagesOfType` of
 [partial replication v1].
 
 ## getTangle(rootId): source
 
-Source is a stream of messages that refers to the rootId. `getTangle`
-was introduced as a way to get older messages in an easy way. Say
-someone mentions an old thread that is not part of your frontier of
+Source is a stream of messages that refers to the rootId. Tangles are
+different from other messages in that messages are linked together and
+thus does not need statements. `getTangle` can be used as a way to get
+older messages more conveniently than getting a subset from multiple
+feeds. This is useful in a social network application where someone
+mentions an old thread that is not part of your frontier of
 messages. `getTangle` is a special case of [set-reconciliation] where
 you don't have any messages in the set. Because of this, the protocol
 can be a lot simplier by just specifying the root you are interested
@@ -78,9 +83,10 @@ in. New messages in the tangle will be get replicated using the
 frontier synchonization the same way as say new contact messages.
 
 If only messages within a certain number of hops is needed, the
-results can be filtered locally. The same way that it is possible to
-use the same method even if you had some of the messages of a tangle
-by doing a local comparison and filtering based on existing messages.
+results can be filtered locally. In the same way this method can be
+used even if you had some of the messages of a tangle by doing a local
+comparison and filtering based on existing messages. This assumes that
+tangles stay rather small.
 
 [JITDB]: https://github.com/arj03/jitdb
 [ssb-observable]: https://github.com/arj03/ssb-observables
