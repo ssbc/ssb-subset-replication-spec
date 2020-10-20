@@ -75,7 +75,7 @@ Open problems:
    locally but on a protocol level (blocking?). If one is introduced
    into the network by an existing user, by dowloading their feed in
    full first and then using their friend graph to either connect to a
-   pub run by a friend([ssb-friend-pub]) or directly to one of their
+   pub run by a friend ([ssb-friend-pub]) or directly to one of their
    friends using a room, you could minimize the harm malicious actors
    could do.
 
