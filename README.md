@@ -68,6 +68,12 @@ than the author to add statements to a result set.
 This api replaces `getFeed`, `getFeedReverse`, `getMessagesOfType` of
 [partial replication v1].
 
+Open problems:
+
+ - how do we handle malicious actors that either sends wrong
+   statements or withholds certain either messages or statements. Both
+   locally but on a protocol level (blocking?)
+
 ## getTangle(rootId): source
 
 Source is a stream of messages that refers to the rootId. Tangles are
@@ -87,6 +93,11 @@ results can be filtered locally. In the same way this method can be
 used even if you had some of the messages of a tangle by doing a local
 comparison and filtering based on existing messages. This assumes that
 tangles stay relativily small.
+
+Open problems:
+
+ - Would it be better to implement a more complicated set replication
+   to allow partial syncing of tangles?
 
 [JITDB]: https://github.com/arj03/jitdb
 [ssb-observable]: https://github.com/arj03/ssb-observables
