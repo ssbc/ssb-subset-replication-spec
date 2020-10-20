@@ -7,6 +7,22 @@ log. The main motivation is to enable faster initial sync by only
 replicating a certain subset of messages that can then be supplimented
 with a frontier sync such as [EBT].
 
+In classical SSB, feeds up to a hops count (2 or 3) is replicated in
+full. The good thing about this is that any node has a full replica of
+the feeds it is interested in, so the only way of having network
+partitions (where a subset of the network is unavailable) is by having
+that part of the network (as defined by hops) go offline faster than
+new nodes come in. Nodes might go offline for an extended period of
+time or never come back. This is somewhat mitigated by pubs.
+
+Partial replication has a similar problem but on a different axis
+where a node might be offline for a while and once it comes back all
+the nodes it connects with only store a partial replica that does not
+overlap on the frontier. In this case the old node would need to go
+into a mode similar to initial replication. It can use its existing
+subset of data of say contact messages to only request changes for
+those so the sync time would be less than a full sync.
+
 It is recommended to use this module in conjunction with
 [ssb-secure-partial-feed].
 
