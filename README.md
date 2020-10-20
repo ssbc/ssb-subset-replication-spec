@@ -86,7 +86,7 @@ If only messages within a certain number of hops is needed, the
 results can be filtered locally. In the same way this method can be
 used even if you had some of the messages of a tangle by doing a local
 comparison and filtering based on existing messages. This assumes that
-tangles stay rather small.
+tangles stay relativily small.
 
 [JITDB]: https://github.com/arj03/jitdb
 [ssb-observable]: https://github.com/arj03/ssb-observables
