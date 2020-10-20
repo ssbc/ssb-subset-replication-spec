@@ -25,7 +25,7 @@ those so the sync time would be less than a full sync.
 
 It is recommended to use this module in conjunction with
 [ssb-secure-partial-feed] to automatically write statements about
-where messages are in a feed.
+where particular messages are in a feed.
 
 This module consists of two methods:
 
