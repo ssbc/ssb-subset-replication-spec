@@ -72,7 +72,12 @@ Open problems:
 
  - how do we handle malicious actors that either sends wrong
    statements or withholds certain either messages or statements. Both
-   locally but on a protocol level (blocking?)
+   locally but on a protocol level (blocking?). If one is introduced
+   into the network by an existing user, by dowloading their feed in
+   full first and then using their friend graph to either connect to a
+   [pub run by a friend]([ssb-friend-pub]) or directly to one of their
+   friends using a room, you could minimize the harm malicious actors
+   could do.
 
 ## getTangle(rootId): source
 
@@ -105,3 +110,4 @@ Open problems:
 [set-reconciliation]: https://github.com/AljoschaMeyer/set-reconciliation
 [ssb-secure-partial-feed]: https://github.com/arj03/ssb-secure-partial-feed
 [EBT]: https://github.com/ssbc/epidemic-broadcast-trees/
+[ssb-friend-pub]: https://github.com/ssbc/ssb-friend-pub
