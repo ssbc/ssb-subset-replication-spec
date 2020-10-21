@@ -9,9 +9,9 @@ supplimented with a frontier sync such as [EBT].
 
 Feeds in SSB can contain multiple subset of messages, this could be
 messages of a certain type (eg. contact or chess moves) or could be
-private messages pertaining to a [private group]. One could argue that
-it might be better to have multiple feeds for different applications,
-but for private groups there is an added security benefit that it is
+private messages pertaining a [private group]. One could argue that it
+might be better to have multiple feeds for different applications, but
+for private groups there is an added security benefit that it is
 harder to see when you are communicating with which group if you are
 part of multiple without having to add random noise.
 
