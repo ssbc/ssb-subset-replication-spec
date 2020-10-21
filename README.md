@@ -114,4 +114,4 @@ Consider using [set-reconciliation] for this.
 [ssb-secure-partial-feed]: https://github.com/arj03/ssb-secure-partial-feed
 [EBT]: https://github.com/ssbc/epidemic-broadcast-trees/
 [ssb-friend-pub]: https://github.com/ssbc/ssb-friend-pub
-[private-group]: https://github.com/ssbc/envelope-spec
+[private group]: https://github.com/ssbc/envelope-spec
