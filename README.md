@@ -2,23 +2,31 @@
 
 Status: Design phase
 
-This module comes from the desire to synchronize a subset of a SSB
-log. The main motivation is to enable faster initial sync by only
-replicating a certain subset of messages that can then be supplimented
-with a frontier sync such as [EBT].
+This module aims to provide methods for synchronizing a subset of one
+or more SSB feeds. The main motivation is to enable faster initial
+sync by only replicating a certain subset of messages that can then be
+supplimented with a frontier sync such as [EBT].
+
+Feeds in SSB can contain multiple subset of messages, this could be
+messages of a certain type (eg. contact or chess moves) or could be
+private messages pertaining to a private group. One could argue that
+it might be better to have multiple feeds for different applications,
+but for private groups there is an added security benefit that it is
+harder to see when you are communicating with which group if you are
+part of multiple without having to add random noise.
 
 In classical SSB, feeds up to a hops count (normally 2 or 3) is
-replicated in full. The good thing about this is that any node has a
-full replica of the feeds it is interested in, so the only way of
-having network partitions (where a subset of the network and thus
-potentially feeds is unavailable) is by having that part of the
-network (as defined by hops) go offline faster than new nodes come
-in. Nodes might go offline for an extended period of time or never
-come back. This is somewhat mitigated by pubs.
+replicated in full. This means that any node has a full replica of the
+feeds it is interested in, so the only way of having network
+partitions (where a subset of the network and thus potentially feeds
+is unavailable) is by having that part of the network (as defined by
+hops) go offline faster than new nodes come in (the churn rate). Nodes
+might go offline for an extended period of time or never come
+back. This is somewhat mitigated by pubs.
 
 Partial replication has a similar problem but on a different axis
 where a node might be offline for a while and once it comes back all
-the nodes it connects with only store a partial replica that does not
+the nodes it connects to only store a partial replica that does not
 overlap on the frontier. In this case the old node would need to go
 into a mode similar to initial replication. It can use its existing
 subset of data of say contact messages to only request changes for
@@ -38,7 +46,7 @@ the latest 10 post messages of a particular feed the following query
 can be used:
 
 ```
-options: { limit 10, reverse: true},
+options: { limit 10, reverse: true },
 query: {
   type: 'AND',
   data: [
@@ -79,30 +87,25 @@ Open problems:
    friends using a room, you could minimize the harm malicious actors
    could do.
 
-## getTangle(rootId): source
+## getTangle (TBD)
 
-Source is a stream of messages that refers to the rootId. Tangles are
-different from other messages in that messages are linked together and
-thus does not need statements. `getTangle` can be used as a way to get
-older messages more conveniently than getting a subset from multiple
-feeds. This is useful in a social network application where someone
-mentions an old thread that is not part of your frontier of
-messages. `getTangle` is a special case of [set-reconciliation] where
-you don't have any messages in the set. Because of this, the protocol
-can be a lot simplier by just specifying the root you are interested
-in. New messages in the tangle will be get replicated using the
-frontier synchonization the same way as say new contact messages.
+Tangles in SSB behaves differently than other types of messages in
+that they are linked together across multiple feeds using links. This
+allows for a different kind of synchonization than `getSubset`. There
+are two common examples of where this could be useful, for getting all
+the messages of an old message threads that is outside the frontier of
+messages and to synchronize a private group (as all messages in those
+are part of a single tangle). While private groups are by definition
+private to external observers, the fact that nodes connecting in SSB
+are authenticated by their ID and that rooms allow direct connections
+between peer allows synchronization of a private group as if the
+messages were public.
 
-If only messages within a certain number of hops is needed, the
-results can be filtered locally. In the same way this method can be
-used even if you had some of the messages of a tangle by doing a local
-comparison and filtering based on existing messages. This assumes that
-tangles stay relativily small.
+As private groups can grow quite large it is important that there is a
+way to synchronize only subsets but also changes.
 
-Open problems:
+Consider using [set-reconciliation] for this.
 
- - Would it be better to implement a more complicated set replication
-   to allow partial syncing of tangles?
 
 [JITDB]: https://github.com/arj03/jitdb
 [ssb-observable]: https://github.com/arj03/ssb-observables
