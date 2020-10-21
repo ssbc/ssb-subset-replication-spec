@@ -9,7 +9,7 @@ supplimented with a frontier sync such as [EBT].
 
 Feeds in SSB can contain multiple subset of messages, this could be
 messages of a certain type (eg. contact or chess moves) or could be
-private messages pertaining to a private group. One could argue that
+private messages pertaining to a [private group]. One could argue that
 it might be better to have multiple feeds for different applications,
 but for private groups there is an added security benefit that it is
 harder to see when you are communicating with which group if you are
@@ -114,3 +114,4 @@ Consider using [set-reconciliation] for this.
 [ssb-secure-partial-feed]: https://github.com/arj03/ssb-secure-partial-feed
 [EBT]: https://github.com/ssbc/epidemic-broadcast-trees/
 [ssb-friend-pub]: https://github.com/ssbc/ssb-friend-pub
+[private-group]: https://github.com/ssbc/envelope-spec
