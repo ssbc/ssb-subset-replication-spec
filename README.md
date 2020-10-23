@@ -102,7 +102,9 @@ between peer allows synchronization of a private group as if the
 messages were public.
 
 As private groups can grow quite large it is important that there is a
-way to synchronize only subsets but also changes.
+way to synchronize only subsets but also changes. And because of this,
+it could also be adventurous to reuse observables here to describe
+these subsets.
 
 Consider using [set-reconciliation] for this.
 
