@@ -66,12 +66,11 @@ Which will result in the following:
 ```
 
 Where a statement is defined as the latest version of a
-[ssb-observable] that describes the thing you are querying. This can
-be useful for contact messages for an author where messages needs to
-be in order and nothing left out by a third party. It might even be
-essential for building certain applications on top of this
-system. Note you can have multiple statements. This allows feeds other
-than the author to add statements to a result set.
+[ssb-observable] that acts as a proof of the thing you are
+querying. This can be useful for contact messages for an author where
+messages needs to be in order and nothing left out by an untrusted
+third party. Note you can have multiple statements. This allows feeds
+other than the author to add statements to a result set.
 
 This api replaces `getFeed`, `getFeedReverse`, `getMessagesOfType` of
 [partial replication v1].
