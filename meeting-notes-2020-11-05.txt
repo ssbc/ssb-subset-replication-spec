@@ -1,0 +1,52 @@
+Link to Henry's notes: https://hackmd.io/I6OWJw-4SWSZCQ4kmd_MYw
+
+Better name for proof would be claim. It is not a proof in the sense
+that it could be false.
+
+You still need a protocol to define what you are talking
+about. Meaning defining the subset. Which would be RPC based.
+
+The result would then be shared as a feed.
+
+Discoverability: cft raised the point of discoverability of these
+feeds (results), as they could potentially be reused. Imagine someone
+writes a subfeed consisting of their contact messages, then this would
+be useful for all peers wanting to do partial replication.
+
+A point was raised about reduced state. It would be possible for the
+subfeed to be a reduced state instead of just the linear messages.
+
+Subfeeds could be used to rewrite a feed or run a parallel feed on a
+different feed format.
+
+Feed writers (for the result) come in different cases:
+ - original author
+ - writer with a certain hops count of you (more likely with rooms)
+ - stranger
+
+For the case of strangers or even a writer within a certain number of
+hops it would be valuable to add claims about the defined subset. We
+briefly touched on the posibility of includes a hops metric or
+something similar to limit the claims you would receive.
+
+We talked about if one should just link to the messages of the
+original feed, or if one should write messages (or links) using the
+feed writers key.
+
+Most of the above related to single feeds. We also talked about
+multiple feeds such as tangles where it is not so easy to define a
+linearity. Imagine a case where you already got 10 messages related to
+some root messages and now you connect to a complely different
+peer. We briefly discussed set replication or sending differences by
+including more information in the "query". Another option would be to
+not have a single feed as the result but multiple feed, one for each
+author.
+
+Coming back to discoverability we talked about having a meta feed.
+
+Lastly the lifetime of feeds. Currently there is no concept of
+lifetime and it might make sense to make that more explicit. This
+would also open the door to ephemeral feeds.
+
+A lot of this is optimization, one could always fall back to full
+replication. But not only optimization.
