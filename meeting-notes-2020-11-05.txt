@@ -19,15 +19,15 @@ subfeed to be a reduced state instead of just the linear messages.
 Subfeeds could be used to rewrite a feed or run a parallel feed on a
 different feed format.
 
-Feed writers (for the result) come in different cases:
+Feed writers (for the result) come in different levels of trust:
  - original author
  - writer with a certain hops count of you (more likely with rooms)
  - stranger
 
-For the case of strangers or even a writer within a certain number of
-hops it would be valuable to add claims about the defined subset. We
-briefly touched on the posibility of includes a hops metric or
-something similar to limit the claims you would receive.
+Depending on the level of trust it would be valuable to add claims
+about the defined subset. We briefly touched on the posibility of
+includes a hops metric or something similar to limit the claims you
+would receive.
 
 We talked about if one should just link to the messages of the
 original feed, or if one should write messages (or links) using the
