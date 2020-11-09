@@ -66,7 +66,7 @@ Which will result in the following:
 ```
 
 Where a statement is defined as the latest version of a
-[ssb-observable] that acts as a proof of the thing you are
+[ssb-observable] that acts as a claim of the thing you are
 querying. This can be useful for contact messages for an author where
 messages needs to be in order and nothing left out by an untrusted
 third party. Note you can have multiple statements. This allows feeds
