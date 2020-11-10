@@ -90,8 +90,13 @@ Consider using [set-reconciliation] for this.
 
 # Prior work
 
-Earlier thread(%L9m5nHRqpXM4Zkha1ENTk5wNOXQMduve8Hc9+F0RLZI=.sha256)
-on SSB discussing partial replication.
+Earlier threads on SSB discussing partial replication:
+
+- %L9m5nHRqpXM4Zkha1ENTk5wNOXQMduve8Hc9+F0RLZI=.sha256
+- %VNCOf3pfP7hjL3lcFvBSSOzRPtR0WHDtvlXvkBcha3I=.sha256
+- %gaYxXAEoSKf3dnw2OlI2EuoduFmkiU4kU+CncbBImPk=.sha256
+- %jM6Dw0BEg9IPVkDH5VaoiVSbt3gCnUfSoO1BhX2Ntpw=.sha256
+- %SEXkvEQCJd2jBrUXDQcFPVix/5eUffoKBURWyy5yYrU=.sha256
 
 [JITDB]: https://github.com/arj03/jitdb
 [ssb-meta-feed]: https://github.com/arj03/ssb-meta-feed
