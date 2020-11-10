@@ -64,6 +64,9 @@ Which will result in the following:
 }
 ```
 
+Here metadata would refer to the metadata attached to the feed in meta
+feed.
+
 ## getTangle (TBD)
 
 Tangles in SSB behaves differently than other types of messages in
