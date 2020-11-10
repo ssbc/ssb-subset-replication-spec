@@ -7,43 +7,42 @@ or more SSB feeds. The main motivation is to enable faster initial
 sync by only replicating a certain subset of messages that can then be
 supplimented with a frontier sync such as [EBT].
 
-Feeds in SSB can contain multiple subset of messages, this could be
-messages of a certain type (eg. contact or chess moves) or could be
-private messages pertaining a [private group]. One could argue that it
-might be better to have multiple feeds for different applications, but
-for private groups there is an added security benefit that it is
-harder to see when you are communicating with which group if you are
-part of multiple without having to add random noise.
+Feeds in classical SSB can said to contain multiple subset of
+messages, this could be messages of a certain type (eg. contact or
+chess moves) or could be private messages pertaining a [private
+group].
 
-In classical SSB, feeds up to a hops count (normally 2 or 3) is
-replicated in full. This means that any node has a full replica of the
-feeds it is interested in, so the only way of having network
-partitions (where a subset of the network and thus potentially feeds
-is unavailable) is by having that part of the network (as defined by
-hops) go offline faster than new nodes come in (the churn rate). Nodes
-might go offline for an extended period of time or never come
-back. This is somewhat mitigated by pubs.
+In classical SSB, feeds up to a hops count (normally 2 or 3) are
+replicated in full. There also exists a method to get a particular
+message out of order, the security of this hinges on the fact that you
+get the ooo message by the hash and so is a special case of engtangled
+messages.
 
-Partial replication has a similar problem but on a different axis
-where a node might be offline for a while and once it comes back all
-the nodes it connects to only store a partial replica that does not
-overlap on the frontier. In this case the old node would need to go
-into a mode similar to initial replication. It can use its existing
-subset of data of say contact messages to only request changes for
-those so the sync time would be less than a full sync.
+Here we are interested in adding APIs that, given [ssb-meta-feed],
+allows two peers to exchange feeds and subset of feeds to allow for
+partial replication.
 
-It is recommended to use this module in conjunction with
-[ssb-secure-partial-feed] to automatically write statements about
-where particular messages are in a feed.
+We are mainly interested in two types of messages. A subset of
+messages of a classical SSB feed and a tangle of messages given a
+common root message.
 
-This module consists of two methods:
+## getSubset(query, options): source
 
-## getSubset(query): source
+getSubset is mainly intended for the subset of classical feed case.
+
+It can been seen as a more general version of createHistoryStream
+where the id or what you are talking about first needs to be
+defined. For this we add a query parameter. From this query the remote
+end would either try to find a feed that can answer the query directly
+or generate a feed that would answer the query.
 
 The query parameters interface is similar to [JITDB]. To support
-pagination, `offset`, `limit` and `reverse` can be supplied. To get
-the latest 10 post messages of a particular feed the following query
-can be used:
+pagination, `offset`, `limit` and `reverse` can be
+supplied. Furthermore it is possible to specifify hops to limit what
+feeds we would accept generated feeds from.
+
+To get the latest 10 post messages of a particular feed the following
+query can be used:
 
 ```
 options: { limit 10, reverse: true },
@@ -60,31 +59,10 @@ Which will result in the following:
 
 ```
 {
-   statements: [statement1, ...],
+   metadata: [md1, ...],
    data: [msg1, ...]
 }
 ```
-
-Where a statement is defined as the latest version of a
-[ssb-observable] that acts as a claim of the thing you are
-querying. This can be useful for contact messages for an author where
-messages needs to be in order and nothing left out by an untrusted
-third party. Note you can have multiple statements. This allows feeds
-other than the author to add statements to a result set.
-
-This api replaces `getFeed`, `getFeedReverse`, `getMessagesOfType` of
-[partial replication v1].
-
-Open problems:
-
- - how do we handle malicious actors that either sends wrong
-   statements or withholds certain either messages or statements. Both
-   locally but on a protocol level (blocking?). If one is introduced
-   into the network by an existing user, by dowloading their feed in
-   full first and then using their friend graph to either connect to a
-   pub run by a friend ([ssb-friend-pub]) or directly to one of their
-   friends using a room, you could minimize the harm malicious actors
-   could do.
 
 ## getTangle (TBD)
 
@@ -100,19 +78,20 @@ are authenticated by their ID and that rooms allow direct connections
 between peer allows synchronization of a private group as if the
 messages were public.
 
-As private groups can grow quite large it is important that there is a
-way to synchronize only subsets but also changes. And because of this,
-it could also be adventurous to reuse observables here to describe
-these subsets.
+As private groups can grow quite large it becomes important that there
+is a way to synchronize only subsets but also changes or the latest
+part of a tangle. The membership part of a private group has a tangle
+root so can be replicated on its own.
 
 Consider using [set-reconciliation] for this.
 
+# Prior work
+
+Earlier thread(%L9m5nHRqpXM4Zkha1ENTk5wNOXQMduve8Hc9+F0RLZI=.sha256)
+on SSB discussing partial replication.
 
 [JITDB]: https://github.com/arj03/jitdb
-[ssb-observable]: https://github.com/arj03/ssb-observables
-[partial replication v1]: https://github.com/arj03/ssb-partial-replication
+[ssb-meta-feed]: https://github.com/arj03/ssb-meta-feed
 [set-reconciliation]: https://github.com/AljoschaMeyer/set-reconciliation
-[ssb-secure-partial-feed]: https://github.com/arj03/ssb-secure-partial-feed
 [EBT]: https://github.com/ssbc/epidemic-broadcast-trees/
-[ssb-friend-pub]: https://github.com/ssbc/ssb-friend-pub
 [private group]: https://github.com/ssbc/private-group-spec
