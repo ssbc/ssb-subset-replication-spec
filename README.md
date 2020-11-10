@@ -22,7 +22,7 @@ Here we are interested in adding APIs that, given [ssb-meta-feed],
 allows two peers to exchange feeds and subset of feeds to allow for
 partial replication.
 
-We are mainly interested in two types of messages. A subset of
+We are mainly interested in two classes of messages. A subset of
 messages of a classical SSB feed and a tangle of messages given a
 common root message.
 
