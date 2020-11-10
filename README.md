@@ -9,7 +9,7 @@ supplimented with a frontier sync such as [EBT].
 
 Feeds in classical SSB can said to contain multiple subset of
 messages, this could be messages of a certain type (eg. contact or
-chess moves) or could be private messages pertaining a [private
+chess moves) or could be private messages pertaining to a [private
 group].
 
 In classical SSB, feeds up to a hops count (normally 2 or 3) are
@@ -28,7 +28,7 @@ common root message.
 
 ## getSubset(query, options): source
 
-getSubset is mainly intended for the subset of classical feed case.
+getSubset is mainly intended for the subset case of a classical feed.
 
 It can been seen as a more general version of createHistoryStream
 where the id or what you are talking about first needs to be
@@ -69,22 +69,22 @@ feed.
 
 ## getTangle (TBD)
 
-Tangles in SSB behaves differently than other types of messages in
+Tangles in SSB behave differently than other types of messages in
 that they are linked together across multiple feeds using links. This
 allows for a different kind of synchonization than `getSubset`. There
-are two common examples of where this could be useful, for getting all
+are two common examples of where this could be useful: for getting all
 the messages of an old message threads that is outside the frontier of
 messages and to synchronize a private group (as all messages in those
 are part of a single tangle). While private groups are by definition
 private to external observers, the fact that nodes connecting in SSB
 are authenticated by their ID and that rooms allow direct connections
-between peer allows synchronization of a private group as if the
-messages were public.
+between peer allows synchronization of a private group directly with
+another group member who also knows which messages belong to the group.
 
 As private groups can grow quite large it becomes important that there
 is a way to synchronize only subsets but also changes or the latest
 part of a tangle. The membership part of a private group has a tangle
-root so can be replicated on its own.
+root and thus can be replicated on its own.
 
 Consider using [set-reconciliation] for this.
 
