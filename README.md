@@ -31,20 +31,18 @@ common root message.
 getSubset is mainly intended for the subset case of a classical feed.
 
 It can been seen as a more general version of createHistoryStream
-where the id or what you are talking about first needs to be
+where the id, or what you are talking about, first needs to be
 defined. For this we add a query parameter. From this query the remote
-end would either try to find a feed that can answer the query directly
-or generate a feed that would answer the query.
+end would generate or reuse a feed that would answer the query.
 
 The query parameters interface is similar to [JITDB]. To support
 pagination, `offset`, `limit` and `reverse` can be
-supplied. Furthermore it is possible to specifify `hops` to limit what
-feeds we would accept generated feeds from. Lastly there is in an
-option to specify whether to include `auxiliary` data or not. This
-option could be used to include blobs or could be used for feeds that
-mainly references existing feeds, so the messages in the new feed
-would only contain a hash of what they are pointing to, and the
-auxiliary field would include the original data.
+supplied. Furthermore there is in an option to specify whether to
+include `auxiliary` data or not. This option could be used to include
+blobs or could be used for feeds that mainly references existing
+feeds. In this way the messages in the generated feed would only
+contain a hash of what they are pointing to, and the auxiliary field
+would include the original data.
 
 To get the latest 10 post messages of a particular feed the following
 query can be used:
