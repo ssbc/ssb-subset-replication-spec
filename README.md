@@ -38,11 +38,11 @@ end would generate or reuse a feed that would answer the query.
 The query parameters interface is similar to [JITDB]. To support
 pagination, `offset`, `limit` and `reverse` can be
 supplied. Furthermore there is in an option to specify whether to
-include `auxiliary` data or not. This option could be used to include
-blobs or could be used for feeds that mainly references existing
-feeds. In this way the messages in the generated feed would only
-contain a hash of what they are pointing to, and the auxiliary field
-would include the original data.
+include `auxiliary` data related to a particular message or not. This
+option could be used to include blobs or could be used for feeds that
+mainly references existing feeds. In this way the messages in the
+generated feed would only contain a hash of what they are pointing to,
+and the auxiliary field would include the original data.
 
 To get the latest 10 post messages of a particular feed the following
 query can be used:
@@ -62,14 +62,22 @@ Which will result in the following:
 
 ```
 {
-   metadata: [md1, ...],
-   data: [msg1, ...],
-   auxiliary: [aux1, ...]
+   feed-metadata: [md1, ...],
+   data: [{ msg1, aux1 }, ...],
 }
 ```
 
-Here metadata would refer to the metadata attached to the feed in meta
-feed.
+or if auxiliary was not specified:
+
+```
+{
+   feed-metadata: [md1, ...],
+   data: [msg1, ...],
+}
+```
+
+The muxrpc stream would first send the feed metadata followed by the
+data similar to the way createHistoryStream works.
 
 ## getTangle (TBD)
 
