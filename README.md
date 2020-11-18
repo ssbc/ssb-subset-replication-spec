@@ -77,7 +77,8 @@ or if auxiliary was not specified:
 ```
 
 The muxrpc stream would first send the feed metadata followed by the
-data similar to the way createHistoryStream works.
+data similar to the way createHistoryStream works. The json object
+notation is just to conway the concepts transferred.
 
 ## getTangle (TBD)
 
