@@ -1,4 +1,4 @@
-# Secure partial replication for SSB
+# Subset replication for SSB
 
 Status: Design phase
 
@@ -35,8 +35,11 @@ where the id, or what you are talking about, first needs to be
 defined. For this we add a query parameter. From this query the remote
 end would generate or reuse a feed that would answer the query.
 
-The query parameters interface is similar to [JITDB]. To support
-pagination, `offset`, `limit` and `reverse` can be
+The query parameters interface is similar to [JITDB] / SSB DB2
+operators. The following operators should be supported: `and`, `or`,
+`type`, `author`, `isPublic`, `isPrivate`.
+
+To support pagination, `startFrom`, `paginate` and `descending` can be
 supplied. Furthermore there is in an option to specify whether to
 include `auxiliary` data related to a particular message or not. This
 option could be used to include blobs or could be used for feeds that
@@ -48,37 +51,23 @@ To get the latest 10 post messages of a particular feed the following
 query can be used:
 
 ```
-options: { limit 10, reverse: true },
-query: {
-  type: 'AND',
-  data: [
-    { type: 'EQUAL', data: { type: 'type', value: 'post' } },
-    { type: 'EQUAL', data: { type: 'author', value: '@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519' } }
-  ]
+{
+  options: { limit 10, reverse: true },
+  query: and((type('post'), author('@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519')))
 }
 ```
 
 Which will result in the following:
 
 ```
-{
-   feed-metadata: [md1, ...],
-   data: [{ msg1, aux1 }, ...],
-}
+[{ msg1, aux1 }, ...],
 ```
 
 or if auxiliary was not specified:
 
 ```
-{
-   feed-metadata: [md1, ...],
-   data: [msg1, ...],
-}
+[msg1, ...]
 ```
-
-The muxrpc stream would first send the feed metadata followed by the
-data similar to the way createHistoryStream works. The json object
-notation is just to conway the concepts transferred.
 
 ## getTangle (TBD)
 
