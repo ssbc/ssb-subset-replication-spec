@@ -26,26 +26,24 @@ We are mainly interested in two classes of messages. A subset of
 messages of a classical SSB feed and a tangle of messages given a
 common root message.
 
-## getSubset(query, options): source
+## subset(query, options): source
 
-getSubset is mainly intended for the subset case of a classical feed.
+Subset is mainly intended for the subset case of a classical feed but
+is also relevant for index feeds.
 
-It can been seen as a more general version of createHistoryStream
-where the id, or what you are talking about, first needs to be
-defined. For this we add a query parameter. From this query the remote
-end would generate or reuse a feed that would answer the query.
+This method can be seen as a more general version of
+createHistoryStream where the id, or what you are interesting in,
+first needs to be defined. Query specifies what data you are
+interested in.
 
 The query parameters interface is similar to [JITDB] / SSB DB2
 operators. The following operators should be supported: `and`, `or`,
 `type`, `author`, `isPublic`, `isPrivate`.
 
-To support pagination, `startFrom`, `paginate` and `descending` can be
-supplied. Furthermore there is in an option to specify whether to
-include `auxiliary` data related to a particular message or not. This
-option could be used to include blobs or could be used for feeds that
-mainly references existing feeds. In this way the messages in the
-generated feed would only contain a hash of what they are pointing to,
-and the auxiliary field would include the original data.
+To support pagination, `startFrom`, `paginate` (page size) and
+`descending` can be specified in the options parameter. Finally
+`auxiliary` can be specified to include linked messages. This is very
+relevant for feeds that just index other feeds.
 
 To get the latest 10 post messages of a particular feed the following
 query can be used:
@@ -57,18 +55,24 @@ query can be used:
 }
 ```
 
+```
+[msg1, ...]
+```
+
+Or to get an index feed:
+
+```
+{
+  options: { limit 10, reverse: true },
+  query: author('@index.ed25519')
+}
+```
+
 Which will result in the following:
 
 ```
 [{ msg1, aux1 }, ...],
 ```
-
-or if auxiliary was not specified:
-
-```
-[msg1, ...]
-```
-
 ## getTangle (TBD)
 
 Tangles in SSB behave differently than other types of messages in
