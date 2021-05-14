@@ -26,7 +26,7 @@ We are mainly interested in two classes of messages. A subset of
 messages of a classical SSB feed and a tangle of messages given a
 common root message.
 
-## subset(query, options): source
+## getSubset(query, options): source
 
 This method can be seen as a more general version of
 createHistoryStream where the id, or what you are interesting in,
