@@ -46,9 +46,14 @@ query can be used:
 ```
 {
   options: { limit 10, reverse: true },
-  query: and((type('post'), author('@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519')))
+  query: and(
+           type('post'), 
+           author('@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519')
+         )
 }
 ```
+
+Result:
 
 ```
 [msg1, ...]
@@ -58,7 +63,7 @@ query can be used:
 
 A method to get an index feeds and the messages referenced by that.
 
-Returns:
+Result:
 
 ```
 [{  msg: msg1, indexed: origMsg }, ...],
