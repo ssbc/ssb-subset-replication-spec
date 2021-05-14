@@ -28,9 +28,6 @@ common root message.
 
 ## subset(query, options): source
 
-Subset is mainly intended for the subset case of a classical feed but
-is also relevant for index feeds.
-
 This method can be seen as a more general version of
 createHistoryStream where the id, or what you are interesting in,
 first needs to be defined. Query specifies what data you are
@@ -40,10 +37,8 @@ The query parameters interface is similar to [JITDB] / SSB DB2
 operators. The following operators should be supported: `and`, `or`,
 `type`, `author`, `isPublic`, `isPrivate`.
 
-To support pagination, `startFrom`, `paginate` (page size) and
-`descending` can be specified in the options parameter. Finally
-`auxiliary` can be specified to include linked messages. This is very
-relevant for feeds that just index other feeds.
+To support pagination, `startFrom`, `pageSize` and `descending` can be
+specified in the options parameter.
 
 To get the latest 10 post messages of a particular feed the following
 query can be used:
@@ -59,20 +54,16 @@ query can be used:
 [msg1, ...]
 ```
 
-Or to get an index feed:
+## getIndexFeed(feedId): source
+
+A method to get an index feeds and the messages referenced by that.
+
+Returns:
 
 ```
-{
-  options: { limit 10, reverse: true },
-  query: author('@index.ed25519')
-}
+[{  msg: msg1, indexed: origMsg }, ...],
 ```
 
-Which will result in the following:
-
-```
-[{ msg1, aux1 }, ...],
-```
 ## getTangle (TBD)
 
 Tangles in SSB behave differently than other types of messages in
