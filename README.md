@@ -43,16 +43,17 @@ specified in the options parameter.
 To get the latest 10 post messages of a particular feed the following
 query can be used:
 
-```
+```js
 {
-  options: { limit 10, reverse: true },
-  query: {
-    op: 'and',
-    data: [
-      { op: 'type', data: 'post' },
-      { op: 'author', data: '@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519' }
-    ]
-  }
+  op: 'and',
+  data: [
+    { op: 'type', data: 'post' },
+    { op: 'author', data: '@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519' }
+  ]
+},
+{
+  descending: true,
+  pageSize: 10
 }
 ```
 
