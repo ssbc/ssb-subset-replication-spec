@@ -46,10 +46,13 @@ query can be used:
 ```
 {
   options: { limit 10, reverse: true },
-  query: and(
-           type('post'), 
-           author('@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519')
-         )
+  query: {
+    op: 'and',
+    data: [
+      { op: 'type', data: 'post' },
+      { op: 'author', data: '@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519' }
+    ]
+  }
 }
 ```
 
