@@ -63,6 +63,34 @@ Result:
 [msg1, ...]
 ```
 
+### query language
+
+Here we define a mini query language that can be used to specify a
+subset of data. The goal of this format is to be easy to parse and
+also be restrictive in the number of operations supported, to limit
+the attack surface.
+
+The query uses an object notation for operators that looks very
+similar to JSON. The objects contains two keys: `op` the name of the
+operation and `data` used for this operation. Data can take various
+forms depending on the operation.
+
+Supported operators:
+
+```
+| op | data |
+| -- | ---- | 
+| and | [op, ...] |
+| or | [op, ...] |
+| type | string |
+| author | string |
+| isPublic |  |
+| isPrivate |  |
+```
+
+Care must be taken not to leak information using these queries around
+private information.
+
 ## getIndexFeed(feedId): source
 
 A method to get an index feeds and the messages referenced by that.
