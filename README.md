@@ -33,9 +33,8 @@ createHistoryStream where the id, or what you are interesting in,
 first needs to be defined. Query specifies what data you are
 interested in.
 
-The query parameters interface is similar to [JITDB] / SSB DB2
-operators. The following operators should be supported: `and`, `or`,
-`type`, `author`, `isPublic`, `isPrivate`.
+The query parameter is an instance of the query language defined
+[below](### Query language).
 
 To support pagination, `startFrom`, `pageSize` and `descending` can be
 specified in the options parameter.
@@ -63,19 +62,21 @@ Result:
 [msg1, ...]
 ```
 
-### query language
+### Query language
+
+Shortname: ssb-ql-1
 
 Here we define a mini query language that can be used to specify a
 subset of data. The goal of this format is to be easy to parse and
-also be restrictive in the number of operations supported, to limit
-the attack surface.
+also be restrictive in the number of operations supported to make it
+easier to map to indexes and to limit the attack surface.
 
 The query uses an object notation for operators that looks very
 similar to JSON. The objects contains two keys: `op` the name of the
-operation and `data` used for this operation. Data can take various
+operation and `data` used for the operation. Data can take various
 forms depending on the operation.
 
-Supported operators:
+Base operators:
 
 ```
 | op | data |
@@ -84,12 +85,14 @@ Supported operators:
 | or | [op, ...] |
 | type | string |
 | author | string |
-| isPublic |  |
-| isPrivate |  |
 ```
 
-Care must be taken not to leak information using these queries around
-private information.
+The spec is open for implementations to add new operators relatively
+easy. This allows experimentation and implementations should simply
+error if presented with an unsupported operator. A new potential
+operator could be `isPrivate` or `isBox2` but extreme care must be
+taken not to leak information using these queries around private
+information.
 
 ## getIndexFeed(feedId): source
 
