@@ -34,7 +34,7 @@ first needs to be defined. Query specifies what data you are
 interested in.
 
 The query parameter is an instance of the query language defined
-[below](### Query language).
+below.
 
 To support pagination, `startFrom`, `pageSize` and `descending` can be
 specified in the options parameter.
