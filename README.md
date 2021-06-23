@@ -45,9 +45,9 @@ query can be used:
 ```js
 {
   op: 'and',
-  data: [
-    { op: 'type', data: 'post' },
-    { op: 'author', data: '@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519' }
+  args: [
+    { op: 'type', string: 'post' },
+    { op: 'author', feed: '@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519' }
   ]
 },
 {
@@ -73,18 +73,18 @@ easier to map to indexes and to limit the attack surface.
 
 The query uses an object notation for operators that looks very
 similar to JSON. The objects contains two keys: `op` the name of the
-operation and `data` used for the operation. Data can take various
-forms depending on the operation.
+operation and a second parameter for the arguments given the
+operation.
 
 Base operators:
 
 ```
-| op | data |
-| -- | ---- | 
-| and | [op, ...] |
-| or | [op, ...] |
-| type | string |
-| author | string |
+| op     | args name   | args type |
+| ------ | ---------   | --------- | 
+| and    | args        | [op, ...] |
+| or     | args        | [op, ...] |
+| type   | string      | string    |
+| author | feed        | string    |
 ```
 
 The spec is open for implementations to add new operators relatively
