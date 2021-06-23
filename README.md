@@ -78,12 +78,12 @@ operation.
 
 Base operators:
 
-| op     | args name   | args type |
-| ------ | ---------   | --------- | 
-| and    | args        | [op, ...] |
-| or     | args        | [op, ...] |
-| type   | string      | string    |
-| author | feed        | string    |
+op     | args name   | args type
+------ | ---------   | ---------
+and    | args        | [op, ...]
+or     | args        | [op, ...]
+type   | string      | string
+author | feed        | string
 
 The spec is open for implementations to add new operators relatively
 easy. This allows experimentation and implementations should simply
