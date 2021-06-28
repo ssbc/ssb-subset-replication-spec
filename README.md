@@ -22,7 +22,7 @@ Here we are interested in adding APIs that, given [ssb-meta-feed],
 allows two peers to exchange feeds and subset of feeds to allow for
 partial replication.
 
-We are mainly interested in two classes of messages. A subset of
+We are mainly interested in two classes of messages: a subset of
 messages of a classical SSB feed and a tangle of messages given a
 common root message.
 
@@ -92,9 +92,14 @@ operator could be `isPrivate` or `isBox2` but extreme care must be
 taken not to leak information using these queries around private
 information.
 
-## getIndexFeed(feedId): source
+## resolveIndexFeed(feedId): source
 
-A method to get an index feeds and the messages referenced by that.
+A method to get an index feeds and the messages referenced. The aim of
+this RPC is for onboarding light clients that want to use indexes to
+only download a particular indexed subset of messages. Clients that
+store the indexed messages in full but still want to index feed can
+use normal replications methods such as `createHistoryStream` and
+`getSubset`.
 
 Result:
 
