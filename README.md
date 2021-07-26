@@ -39,7 +39,7 @@ in `options.querylang`.
 To support pagination, `startFrom`, `pageSize` and `descending` can be
 specified in the options parameter.
 
-Is it up to the receiving end of the query to determine if the query
+It is up to the receiving end of the query to determine if the query
 results in too much load. This could be if someone tries to get data
 for a large number of feeds without proper pagination, or if the query
 includes arguments in a form that strains the query planner.
