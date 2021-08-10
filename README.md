@@ -34,37 +34,49 @@ first needs to be defined. Query specifies what data you are
 interested in.
 
 The query parameter is an instance of the query language defined
-below.
+in `options.querylang`.
 
 To support pagination, `startFrom`, `pageSize` and `descending` can be
 specified in the options parameter.
 
 To get the latest 10 post messages of a particular feed the following
-query can be used:
+`query` and `options` arguments can be used:
 
-```js
+```json
 {
-  op: 'and',
-  args: [
-    { op: 'type', string: 'post' },
-    { op: 'author', feed: '@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519' }
-  ]
-},
+  "author": "@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519",
+  "type": "post"
+}
+```
+
+```
 {
-  descending: true,
-  pageSize: 10
+  "querylang": "ssb-ql-0",
+  "descending": true,
+  "pageSize": 10
 }
 ```
 
 Result:
 
 ```
-[msg1, ...]
+[msg1, msg2, ..., msg10]
 ```
 
 ### Query language
 
-Shortname: ssb-ql-1
+#### ssb-ql-0
+
+We start by supporting a proof-of-concept query language called
+"ssb-ql-0" which is a precursor for the more powerful "ssb-ql-1"
+(see below).
+
+Queries in ssb-ql-0 are merely JSON objects with two fields:
+
+- `author`: a valid feed ID as a string
+- `type`: a message type, can be any non-empty string 
+
+#### ssb-ql-1
 
 Here we define a mini query language that can be used to specify a
 subset of data. The goal of this format is to be easy to parse and
