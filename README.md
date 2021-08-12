@@ -76,7 +76,12 @@ Queries in ssb-ql-0 are merely JSON objects with two fields:
 - `author`: a valid feed ID as a string
 - `type`: a message type, can be any non-empty string 
 
-#### ssb-ql-1
+#### ssb-ql-1>
+
+*Status: under design. We recommend using ssb-ql-0 in the meantime.
+ssb-ql-1 has challenges such as determining when two queries are
+equivalent, which may be an NP complete problem. Read more on this
+SSB thread:* `%FjK8SdR2Q8n3XBwFKiI8ebdSr/Tp7bMzhr2R6YMq+b0=.sha256`
 
 Here we define a mini query language that can be used to specify a
 subset of data. The goal of this format is to be easy to parse and
