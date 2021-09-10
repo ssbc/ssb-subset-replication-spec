@@ -44,13 +44,14 @@ results in too much load. This could be if someone tries to get data
 for a large number of feeds without proper pagination, or if the query
 includes arguments in a form that strains the query planner.
 
-To get the latest 10 post messages of a particular feed the following
-`query` and `options` arguments can be used:
+To get the latest 10 public post messages of a particular feed the
+following `query` and `options` arguments can be used:
 
 ```json
 {
   "author": "@6CAxOI3f+LUOVrbAl0IemqiS7ATpQvr9Mdw9LC4+Uv0=.ed25519",
-  "type": "post"
+  "type": "post",
+  "private": false
 }
 ```
 
@@ -76,10 +77,13 @@ We start by supporting a proof-of-concept query language called
 "ssb-ql-0" which is a precursor for the more powerful "ssb-ql-1"
 (see below).
 
-Queries in ssb-ql-0 are merely JSON objects with two fields:
+Queries in ssb-ql-0 are merely JSON objects with three *required*
+fields:
 
 - `author`: a valid feed ID as a string
-- `type`: a message type, can be any non-empty string 
+- `type`: a message type, can be any non-empty string, or null,
+  which signals that messages of any type are accepted
+- `private`: a boolean 
 
 #### ssb-ql-1
 
