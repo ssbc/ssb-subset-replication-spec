@@ -85,6 +85,9 @@ fields:
   which signals that messages of any type are accepted
 - `private`: a boolean 
 
+If `private: true` then `type` **MUST** be `null`. This is to prevent
+leaking metadata about private messages to the public.
+
 #### ssb-ql-1
 
 *Status: under design. We recommend using ssb-ql-0 in the meantime.
@@ -110,6 +113,9 @@ and    | args        | [op, ...]
 or     | args        | [op, ...]
 type   | string      | string
 author | feed        | string
+
+Note that `ssb-ql-1` is only for public messages and is incapable of
+querying private messages, unlike `ssb-ql-0`.
 
 The spec is open for implementations to add new operators relatively
 easy. This allows experimentation and implementations should simply
