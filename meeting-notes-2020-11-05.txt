@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2021 Anders Rune Jensen
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 Link to Henry's notes: https://hackmd.io/I6OWJw-4SWSZCQ4kmd_MYw
 
 Better name for proof would be claim. It is not a proof in the sense
